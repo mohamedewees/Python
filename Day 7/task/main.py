@@ -1,10 +1,67 @@
 import random
 
+stages = [r'''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========
+''', r'''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========
+''', r'''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+''']
+
 word_list = ["aardvark", "baboon", "camel"]
 
 chosen_word = random.choice(word_list)
 print(chosen_word)
-
+lives = 6
 # TODO-1: Create a "placeholder" with the same number of blanks as the chosen_word
 
 placeholder = []
@@ -18,7 +75,7 @@ tries = 0
 display = placeholder
 while tries < len(display):
     guess = input("Guess a letter: ").lower()
-
+    correct_guess = False
     letter_index = 0
 
     # TODO-2: Create a "display" that puts the guess letter in the right positions and _ in the rest of the string.
@@ -26,16 +83,21 @@ while tries < len(display):
     for letter in chosen_word:
         if display[letter_index] == "_":
             if letter == guess:
-                # print("Right")
                 display[letter_index] = letter
-                print(letter_index)
+                # print(letter_index)
                 tries += 1
-                # letter_index += 1
-            else:
-                display[letter_index] == "_"
-                # letter_index += 1
+                correct_guess = True
+
         letter_index += 1
 
-    print(''.join(display))
+    if not correct_guess:  # this is same as if correct_guess == False
+        print(stages[lives])
+        print(f"Wrong guess, You have : {lives} Lives remaining.")
+        lives -= 1
 
-print("You Won!")
+    print(''.join(display))
+    if lives < 0:
+        print("You lose.")
+        break
+
+# print("You Won!")
