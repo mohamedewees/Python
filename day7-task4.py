@@ -100,4 +100,4 @@ while tries < len(display):
         print("You lose.")
         break
 
-# print("You Won!")
+print("You Won!")
