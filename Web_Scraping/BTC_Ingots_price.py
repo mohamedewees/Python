@@ -2,6 +2,7 @@
 # <span class="oe_currency_value">26,973.34</span>
 # <span class="oe_currency_value">9,456.10</span>
 
+import datetime
 from urllib.request import urlopen
 
 url_10gm = 'https://shop.btcegyptgold.com/shop/10gm-307?category=90#attr=1523,1529,1801'
@@ -34,7 +35,8 @@ cost_5gm = html_5gm[cost_index_start_5gm:(cost_index_start_5gm+6)]
 cost_index_start_quarter = cost_index_quarter + len('<span class="oe_currency_value">')
 cost_quarter = html_quarter[cost_index_start_quarter:(cost_index_start_quarter + 6)]
 
+print("Current date / time: " + datetime.datetime.now().strftime("%d/%m/%Y , %I:%M:%S %p"))
 print("BTC Ingot(10gm) price: " +cost_10gm+ " LE")
 print("BTC Ingot(5gm) price: " +cost_5gm+ " LE")
 print("BTC Coins(2gm) price: " +cost_quarter+ " LE")
-# print(cost_index_start)
+
